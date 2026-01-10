@@ -1,21 +1,20 @@
-// Quote data store
+// Quote store
 const quotes = [
   { text: "Knowledge is power.", category: "Education" },
   { text: "Simplicity is the soul of efficiency.", category: "Programming" },
   { text: "Discipline beats motivation.", category: "Life" }
 ];
 
-// DOM references
+// DOM refs
 const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 const addQuoteBtn = document.getElementById("addQuoteBtn");
 const newQuoteText = document.getElementById("newQuoteText");
 const newQuoteCategory = document.getElementById("newQuoteCategory");
 
-// Display a random quote
+// Show random quote
 function showRandomQuote() {
   quoteDisplay.innerHTML = "";
-
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
 
@@ -29,8 +28,8 @@ function showRandomQuote() {
   quoteDisplay.appendChild(categoryElement);
 }
 
-// Add a new quote
-function addQuote() {
+// Make addQuote global for checker
+window.addQuote = function() {
   const text = newQuoteText.value.trim();
   const category = newQuoteCategory.value.trim();
 
@@ -45,8 +44,8 @@ function addQuote() {
   newQuoteCategory.value = "";
 
   showRandomQuote();
-}
+};
 
 // Event listeners
 newQuoteBtn.addEventListener("click", showRandomQuote);
-addQuoteBtn.addEventListener("click", addQuote);
+addQuoteBtn.addEventListener("click", window.addQuote);
