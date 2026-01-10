@@ -12,9 +12,9 @@ const addQuoteBtn = document.getElementById("addQuoteBtn");
 const newQuoteText = document.getElementById("newQuoteText");
 const newQuoteCategory = document.getElementById("newQuoteCategory");
 
-// Show a random quote
+// Display a random quote
 function showRandomQuote() {
-  quoteDisplay.innerHTML = ""; // clear previous content
+  quoteDisplay.innerHTML = "";
 
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
@@ -29,22 +29,17 @@ function showRandomQuote() {
   quoteDisplay.appendChild(categoryElement);
 }
 
-// Add a new quote dynamically
+// Add a new quote
 function addQuote() {
   const text = newQuoteText.value.trim();
   const category = newQuoteCategory.value.trim();
 
-  if (text === "" || category === "") {
+  if (!text || !category) {
     alert("Both fields are required.");
     return;
   }
 
-  const newQuote = {
-    text,
-    category
-  };
-
-  quotes.push(newQuote);
+  quotes.push({ text, category });
 
   newQuoteText.value = "";
   newQuoteCategory.value = "";
