@@ -1,4 +1,4 @@
-// Quote data
+// Quotes array (REQUIRED)
 const quotes = [
   { text: "Knowledge is power.", category: "Education" },
   { text: "Simplicity is the soul of efficiency.", category: "Programming" },
@@ -7,9 +7,9 @@ const quotes = [
 
 // DOM references
 const quoteDisplay = document.getElementById("quoteDisplay");
-const newQuoteBtn = document.getElementById("newQuote");
+const newQuoteButton = document.getElementById("newQuote");
 
-// REQUIRED: displayRandomQuote
+// REQUIRED FUNCTION
 function displayRandomQuote() {
   quoteDisplay.innerHTML = "";
 
@@ -22,7 +22,28 @@ function displayRandomQuote() {
   quoteDisplay.appendChild(p);
 }
 
-// REQUIRED: createAddQuoteForm
+// REQUIRED FUNCTION
+function addQuote() {
+  const textInput = document.getElementById("newQuoteText");
+  const categoryInput = document.getElementById("newQuoteCategory");
+
+  const text = textInput.value.trim();
+  const category = categoryInput.value.trim();
+
+  if (!text || !category) {
+    alert("Both fields are required");
+    return;
+  }
+
+  quotes.push({ text, category });
+
+  displayRandomQuote();
+
+  textInput.value = "";
+  categoryInput.value = "";
+}
+
+// REQUIRED FUNCTION
 function createAddQuoteForm() {
   const container = document.getElementById("formContainer");
 
@@ -36,7 +57,6 @@ function createAddQuoteForm() {
 
   const button = document.createElement("button");
   button.textContent = "Add Quote";
-
   button.addEventListener("click", addQuote);
 
   container.appendChild(textInput);
@@ -44,23 +64,8 @@ function createAddQuoteForm() {
   container.appendChild(button);
 }
 
-// REQUIRED: addQuote
-function addQuote() {
-  const text = document.getElementById("newQuoteText").value.trim();
-  const category = document.getElementById("newQuoteCategory").value.trim();
+// REQUIRED EVENT LISTENER
+newQuoteButton.addEventListener("click", displayRandomQuote);
 
-  if (!text || !category) {
-    alert("Both fields are required");
-    return;
-  }
-
-  quotes.push({ text, category });
-
-  displayRandomQuote();
-}
-
-// REQUIRED: event listener
-newQuoteBtn.addEventListener("click", displayRandomQuote);
-
-// Initialize
+// INIT
 createAddQuoteForm();
