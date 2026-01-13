@@ -228,6 +228,20 @@ async function syncQuotes() {
   filterQuotes();
   syncStatus.textContent = "Quotes updated from server. Server version applied.";
 }
+async function syncQuotes() {
+  const serverQuotes = await fetchQuotesFromServer();
+  if (serverQuotes.length === 0) return;
+
+  // SERVER TAKES PRECEDENCE
+  quotes = serverQuotes;
+  saveQuotes();
+  populateCategories();
+  filterQuotes();
+
+  //  Sync status
+  syncStatus.textContent = "Quotes synced with server!";
+}
+
 
 // Periodic sync every 30 seconds
 setInterval(syncQuotes, 30000);
