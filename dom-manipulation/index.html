@@ -1,6 +1,5 @@
 
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,32 +10,10 @@
 
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Sync Status -->
-  <p id="syncStatus"></p>
-
-  <!-- Category Filter -->
-  <select id="categoryFilter" onchange="filterQuotes()">
-    <option value="all">All Categories</option>
-  </select>
-
-  <!-- Quote Display -->
   <div id="quoteDisplay"></div>
+  <div id="formContainer"></div>
 
   <button id="newQuote">Show New Quote</button>
-
-  <!-- Add Quote -->
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteBtn">Add Quote</button>
-  </div>
-
-  <!-- Import / Export -->
-  <button id="exportQuotes">Export Quotes</button>
-  <input type="file" accept=".json" onchange="importFromJsonFile(event)" />
-
-  <!-- Manual Sync -->
-  <button onclick="syncWithServer()">Sync with Server</button>
 
   <script src="script.js"></script>
 </body>
